@@ -70,10 +70,20 @@ ENVIRONMENT_MAP = {
 }
 
 
-def make(task_name):
-    """Creates simulated eval environment from task name."""
-    assert task_name in ENVIRONMENTS, f"Task {task_name} is not supported. Environments: \n {ENVIRONMENTS}"
-    env_name, kwargs = ENVIRONMENT_MAP[task_name]
-    kwargs["prepackaged_config"] = True
-    env = gym.make(env_name, obs_mode="rgbd", **kwargs)
+# origin
+# def make(task_name):
+#     """Creates simulated eval environment from task name."""
+#     assert task_name in ENVIRONMENTS, f"Task {task_name} is not supported. Environments: \n {ENVIRONMENTS}"
+#     env_name, kwargs = ENVIRONMENT_MAP[task_name]
+#     kwargs["prepackaged_config"] = True
+#     env = gym.make(env_name, obs_mode="rgbd", **kwargs)
+#     return env
+
+# new
+def make(env_name, **kwargs):
+    if env_name in ENVIRONMENTS:
+        env_name, kwargs = ENVIRONMENT_MAP[env_name]
+        kwargs["prepackaged_config"] = True
+        env = gym.make(env_name, obs_mode="rgbd", **kwargs)
+    else: env = gym.make(env_name, obs_mode="rgbd", **kwargs)
     return env

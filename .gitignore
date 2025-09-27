@@ -27,3 +27,8 @@ dist/
 .vscode
 
 imgui.ini
+
+*.log
+*.mp4
+*.png
+*.json

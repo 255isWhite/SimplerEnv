@@ -15,6 +15,12 @@ def get_args():
     # parse command-line arguments
     parser = argparse.ArgumentParser()
     parser.add_argument(
+        "--instruction",
+        type=str,
+        default=None,
+        help="language goal",
+    )
+    parser.add_argument(
         "--policy-model",
         type=str,
         default="rt1",

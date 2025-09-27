@@ -124,10 +124,11 @@ def run_maniskill2_eval_single_episode(
         )
         
         success = "success" if done else "failure"
-        new_task_description = env.get_language_instruction()
-        if new_task_description != task_description:
-            task_description = new_task_description
-            print(task_description)
+        # new_task_description = env.get_language_instruction()
+        # if new_task_description != task_description:
+        #     task_description = new_task_description
+        #     print(task_description)
+        print(f"task_description: {task_description}")
         is_final_subtask = env.is_final_subtask()
 
         print(timestep, info)
@@ -199,6 +200,7 @@ def maniskill2_evaluator(model, args):
                     additional_env_save_tags=args.additional_env_save_tags,
                     obs_camera_name=args.obs_camera_name,
                     logging_dir=args.logging_dir,
+                    instruction=args.instruction,
                 )
                 if args.obj_variation_mode == "xy":
                     for obj_init_x in args.obj_init_xs:
